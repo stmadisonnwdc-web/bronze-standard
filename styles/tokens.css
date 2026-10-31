@@ -1,0 +1,118 @@
+/* Bronze Standard design tokens.
+   Contrast ratios are measured (WCAG relative luminance) and re-checked by `npm run contrast`.
+   Text: 4.5:1 minimum (3:1 at >= 24px). Focus rings and functional borders: 3:1. */
+
+:root {
+  /* Palette — raw values */
+  --ink-900: #0a0a0b;
+  --ink-700: #16161a;
+  --ink-500: #3a3a42;
+  --ink-300: #8a8a93;
+  --bone-100: #f6f3ee;
+  --bone-200: #ede8e0;
+  --bone-300: #ddd6ca;
+  --bronze-700: #7a5c34; /* text on bone: 5.57 / 5.05 */
+  --bronze-600: #8c6b3f; /* focus, functional strokes: 4.42 / 4.01 (>= 3:1) */
+  --bronze-500: #b08d57; /* decorative rules, 3D material: never text */
+  --bronze-300: #d6bc92; /* highlights and focus on dark surfaces */
+  --sage-500: #6e7a6a; /* counter-accent, < 3% of surface */
+
+  /* Semantic roles — light (primary) */
+  --surface: var(--bone-100);
+  --surface-2: var(--bone-200);
+  --surface-3: var(--bone-300);
+  --text: var(--ink-900); /* 17.88 */
+  --text-2: var(--ink-500); /* 10.18 */
+  --text-quiet: var(--ink-300); /* 3.09: >= 24px or decorative only */
+  --accent-text: var(--bronze-700);
+  --accent-stroke: var(--bronze-600);
+  --accent-rule: var(--bronze-500);
+  --focus: var(--bronze-600);
+  --rule: rgb(10 10 11 / 0.08);
+  --border: #8a8273; /* functional borders on bone: 3.44 / 3.12 */
+  --shadow: 0 24px 60px -24px rgb(10 10 11 / 0.18);
+  color-scheme: light;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --dur-micro: 180ms;
+  --dur-base: 420ms;
+  --dur-macro: 900ms;
+  --dur-scene: 1400ms;
+  --stagger: 60ms;
+
+  /* Space */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --section: 96px;
+  --gutter: 16px;
+  --header-h: 64px;
+
+  /* Form */
+  --radius-control: 2px;
+  --radius-pill: 999px;
+
+  /* Type scale (fluid, clamped) */
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-22: clamp(1.25rem, 1.15rem + 0.4vw, 1.375rem);
+  --fs-28: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
+  --fs-36: clamp(1.875rem, 1.5rem + 1.4vw, 2.25rem);
+  --fs-52: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
+  --fs-76: clamp(2.75rem, 1.6rem + 4.6vw, 4.75rem);
+  --fs-112: clamp(3.25rem, 1.4rem + 7.4vw, 7rem);
+  --measure-display: 60ch;
+  --measure-body: 68ch;
+}
+
+@media (min-width: 768px) {
+  :root { --section: 144px; --gutter: 32px; }
+}
+@media (min-width: 1200px) {
+  :root { --section: 192px; --gutter: 48px; }
+}
+
+/* Dark — follows the system unless the reader chose light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --surface: var(--ink-900);
+    --surface-2: var(--ink-700);
+    --surface-3: #22222a;
+    --text: var(--bone-100); /* 17.88 */
+    --text-2: #b4b0a8; /* 9.2 on ink-900, 8.4 on ink-700 */
+    --text-quiet: var(--ink-300); /* 5.78 */
+    --accent-text: var(--bronze-300); /* 10.81 */
+    --accent-stroke: var(--bronze-500); /* 6.40 */
+    --accent-rule: var(--bronze-600);
+    --focus: var(--bronze-300);
+    --rule: rgb(246 243 238 / 0.1);
+    --border: #77736b; /* 4.2 on ink-900 */
+    --shadow: 0 24px 60px -24px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --surface: var(--ink-900);
+  --surface-2: var(--ink-700);
+  --surface-3: #22222a;
+  --text: var(--bone-100);
+  --text-2: #b4b0a8;
+  --text-quiet: var(--ink-300);
+  --accent-text: var(--bronze-300);
+  --accent-stroke: var(--bronze-500);
+  --accent-rule: var(--bronze-600);
+  --focus: var(--bronze-300);
+  --rule: rgb(246 243 238 / 0.1);
+  --border: #77736b;
+  --shadow: 0 24px 60px -24px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
